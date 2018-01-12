@@ -15,15 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
   public NomeUsuario:string = "Stanley Alves";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,public navParams: NavParams) {
   }
 
-  public somaDoisNumero(): void{
-    alert(5 + 10);
-  }
+  /* public somaDoisNumero(num1:number, num2:number ): void{
+    alert(num1 + num2);
+  } */
 
   ionViewDidLoad() {
-    this.somaDoisNumero();
+    /* this.somaDoisNumero(10,99); */
   }
 
 }
