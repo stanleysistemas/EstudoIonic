@@ -17,6 +17,7 @@ import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
 
 
 
+
 @NgModule({
   declarations: [
     MyApp,
