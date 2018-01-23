@@ -7,49 +7,49 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Feed</ion-title>
+    <ion-title>Blocos de Carnaval</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-card>
+    <ion-card *ngFor="let bloco of lista_blocos">
 
         <ion-item>
            <ion-avatar item-start>
-            <img src="assets/imgs/avatar.png">
+            <img src="/assets/imgs/mascara.jpg">
           </ion-avatar>
-          <h2 class="feed_title">{{ NomeUsuario }}</h2>
-          <p class="feed_date">12 de Janeiro 2018 (Sexta)</p>
+          <h2 class="feed_title">{{bloco.nomeEvento}}</h2>
+          <p class="feed_date">{{bloco.dataInicio | date:'dd/MM/yyyy' }}</p>
         </ion-item>
       
-         <img src="assets/imgs/feed_image.png">
-      
+         <!-- <img src="assets/imgs/feed_image.png"> -->
+        
         <ion-card-content>
-          <p>Onde: Rua Farnese, em frente ao nº 83, Santo Cristo</p>
+          <p>Local : {{bloco.localConcentracao}}</p>
         </ion-card-content>
       
         <ion-row>
           <ion-col>
             <button ion-button icon-left clear small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>12 Likes</div>
+             <!--  <ion-icon name="thumbs-up"></ion-icon> -->
+              <div>Bairro: {{bloco.bairro}}</div>
             </button>
           </ion-col>
           <ion-col>
             <button ion-button icon-left clear small>
-              <ion-icon name="text"></ion-icon>
-              <div>4 Comments</div>
+             <!--  <ion-icon name="text"></ion-icon> -->
+              <div>Concentração: {{bloco.horaConcentracao | date:'mediumTime'}}</div>
             </button>
           </ion-col>
-          <ion-col center text-center>
-            <ion-note>
-              
-            </ion-note>
+          <ion-col>
+            <button ion-button icon-left clear small>
+              <div>Início: {{bloco.horaInicio | date:'mediumTime'}}</div>
+            </button>
           </ion-col>
         </ion-row>
-      
+       
       </ion-card>
    
   
