@@ -11,10 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { IntroPageModule } from '../pages/intro/intro.module';
-import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
-
-
-
+//import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
 
 @NgModule({
   declarations: [
@@ -39,7 +36,7 @@ import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiFoliaProvider
+    //ApiFoliaProvider
   ]
 })
 export class AppModule {}
