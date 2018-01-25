@@ -78,8 +78,9 @@ export class FeedPage {
     this.carregarBlocos();
   }
 
-  abrirDetalhes(){
-    this.navCtrl.push(BlocosdetalhesPage);
+  abrirDetalhes(bloco){
+    console.log(bloco);
+    this.navCtrl.push(BlocosdetalhesPage, {id: bloco.id});
   }
 
   carregarBlocos(){

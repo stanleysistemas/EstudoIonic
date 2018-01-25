@@ -16,12 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class BlocosdetalhesPage {
 
   public bloco;
+  public blocoid;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BlocosdetalhesPage');
+  ionViewDidEnter() {
+    this.blocoid = this.navParams.get("id");
+   
   }
 
 }
