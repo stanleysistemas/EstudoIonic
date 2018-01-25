@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ApiFoliaProvider } from '../../providers/api-folia/api-folia';
+import { BlocosdetalhesPage } from '../blocosdetalhes/blocosdetalhes';
 
 
 /**
@@ -30,11 +31,16 @@ export class FeedPage {
 
   public lista_blocos = new Array<any>();
 
-  
+  public loader;
+
+  public refresher;
+  public isRefreshing: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private apifoliaProvider: ApiFoliaProvider
+    private apifoliaProvider: ApiFoliaProvider,
+    public loadingCtrl: LoadingController
   ) {
   }
 
@@ -42,15 +48,61 @@ export class FeedPage {
     alert(num1 + num2);
   } */
 
-  ionViewDidLoad() {
+  AbreCarregando() {
+    this.loader = this.loadingCtrl.create({
+      content: "Por favor espere...",
+     // duration: 3000
+    });
+    this.loader.present();
+  }
+
+  fechaCarregando(){
+    this.loader.dismiss();
+  }
+
+  doRefresh(refresher) {
+    this.refresher = refresher;
+    this.isRefreshing = true;
+
+    this.carregarBlocos();
+
+  }
+
+    //setTimeout(() => {
+    //  console.log('Async operation has ended');
+    //  refresher.complete();
+    //}, 2000);
+  
+
+  ionViewDidEnter() {
+    this.carregarBlocos();
+  }
+
+  abrirDetalhes(){
+    this.navCtrl.push(BlocosdetalhesPage);
+  }
+
+  carregarBlocos(){
+    this.AbreCarregando();
     this.apifoliaProvider.getTodosBlocos().subscribe(
       data => {
         const response = (data as any);
         const object_retorno = JSON.parse(response._body);
         this.lista_blocos = object_retorno;
+
         console.log(this.lista_blocos);
+
+        this.fechaCarregando();
+        if(this.isRefreshing){
+          this.refresher.complete();
+        }
       }, error => {
         console.log(error);
+        this.fechaCarregando();
+        if(this.isRefreshing){
+          this.refresher.complete();
+          this.isRefreshing = false;
+        }
       }
     )
   }
