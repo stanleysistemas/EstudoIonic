@@ -23,7 +23,7 @@ export class ConfiguracoesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfiguracoesPage');
+    //console.log('ionViewDidLoad ConfiguracoesPage');
   }
 
   abrirPerfil(){

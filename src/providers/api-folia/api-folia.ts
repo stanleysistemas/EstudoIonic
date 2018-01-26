@@ -13,11 +13,15 @@ export class ApiFoliaProvider {
 
   private baseApiPath = "https://rioinformaweb.azurewebsites.net/api";
   constructor(public http: Http) {
-    console.log('Hello ApiFoliaProvider Provider');
+  //  console.log('Hello ApiFoliaProvider Provider');
   }
 
   getTodosBlocos(){
     return this.http.get(this.baseApiPath+"/Eventos");
+  }
+
+  getBlocosDetalhes(blocoid){
+    return this.http.get(this.baseApiPath + "/Eventos/"+blocoid);
   }
 
 }

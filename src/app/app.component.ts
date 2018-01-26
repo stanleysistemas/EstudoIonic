@@ -36,7 +36,7 @@ export class MyApp {
       }else{
         this.rootPage = TabsPage;
       }
-      console.log(config);
+    //  console.log(config);
 
       statusBar.styleDefault();
       splashScreen.hide();
