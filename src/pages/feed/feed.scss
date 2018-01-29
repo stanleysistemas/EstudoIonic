@@ -20,7 +20,11 @@ page-feed {
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
         contain: size style layout;
-        background-color: #c9c5c5;
+       // background-color: #c8c7cc;
+       background-image: linear-gradient(red, yellow);
+      // background-image: url('/src/assets/imgs/mascara.jpg');
+      // background: repeat;
       }
+
 
 }

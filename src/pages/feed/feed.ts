@@ -74,7 +74,7 @@ export class FeedPage {
     //}, 2000);
   
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.carregarBlocos();
   }
 
@@ -91,7 +91,7 @@ export class FeedPage {
         const object_retorno = JSON.parse(response._body);
         this.lista_blocos = object_retorno;
 
-        console.log(this.lista_blocos);
+      //  console.log(this.lista_blocos);
 
         this.fechaCarregando();
         if(this.isRefreshing){

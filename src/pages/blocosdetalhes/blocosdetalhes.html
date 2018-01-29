@@ -5,48 +5,47 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Detalhes</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar color="danger">
+    <ion-navbar>
+      <ion-title>Detalhes</ion-title>
+    </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
+<ion-content class="ion-content" padding>
+  <ion-card *ngIf="bloco">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/mascara.jpg">
+      </ion-avatar>
+      <h2 class="feed_title">{{bloco.nomeEvento}}</h2>
+      <p class="feed_date">{{bloco.dataInicio | date:'dd/MM/yyyy' }}</p>
+    </ion-item>
 
-<ion-content padding>
-    <ion-card *ngIf="bloco">
-        <ion-item>
-          <ion-avatar item-start>
-            <img src="assets/imgs/mascara.jpg">
-          </ion-avatar>
-          <h2 class="feed_title">{{bloco.nomeEvento}}</h2>
-          <p class="feed_date">{{bloco.dataInicio | date:'dd/MM/yyyy' }}</p>
-        </ion-item>
-    
-        <!-- <img src="assets/imgs/feed_image.png"> -->
-    
-        <ion-card-content>
-          <p>Local : {{bloco.localConcentracao}}</p>
-        </ion-card-content>
-    
-        <ion-row>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <!--  <ion-icon name="thumbs-up"></ion-icon> -->
-              <div>Bairro: {{bloco.bairro}}</div>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <!--  <ion-icon name="text"></ion-icon> -->
-              <div>Concentração: {{bloco.horaConcentracao | date:'mediumTime'}}</div>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button icon-left clear small>
-              <div>Início: {{bloco.horaInicio | date:'mediumTime'}}</div>
-            </button>
-          </ion-col>
-        </ion-row>   
-      </ion-card>
+    <!-- <img src="assets/imgs/feed_image.png"> -->
+
+    <ion-card-content>
+      <p>Local : {{bloco.localConcentracao}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <!--  <ion-icon name="thumbs-up"></ion-icon> -->
+          <div>Bairro: {{bloco.bairro}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <!--  <ion-icon name="text"></ion-icon> -->
+          <div>Concentração: {{bloco.horaConcentracao | date:'mediumTime'}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <div>Início: {{bloco.horaInicio | date:'mediumTime'}}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>
