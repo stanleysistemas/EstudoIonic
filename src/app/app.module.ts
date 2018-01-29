@@ -16,6 +16,9 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 //import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes.module';
 
+
+
+
 //import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
 
 @NgModule({
@@ -33,7 +36,7 @@ import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes
     //ConfiguracoesPageModule,
    // SobrePageModule,
    // PerfilPageModule,
-    BlocosdetalhesPageModule
+    BlocosdetalhesPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
