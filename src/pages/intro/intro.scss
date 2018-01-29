@@ -2,4 +2,24 @@ page-intro {
     .slide_image img {
         width: 240px;
     }
+
+   /*  ion-slide {
+        background-color: #32db64;
+    } */
+
+    .slider1{
+        background-image: linear-gradient(red, yellow);  
+    }
+
+    /* .slider2{
+        background-image: url("/assets/imgs/carnav.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    .slider3{
+        background-image: url("/assets/imgs/party.png");
+        background-size: 20%;
+    } */
+    
 }

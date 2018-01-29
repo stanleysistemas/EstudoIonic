@@ -1,3 +1,30 @@
 page-home {
 
+    h3.app_title {
+        color: red;
+        font-weight: bold;
+    }
+
+    .scroll-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+        contain: size style layout;
+        text-shadow: 2cm
+        // background-image: url("/assets/imgs/mascara.jpg");
+      // background-size: 10%;
+       // background-repeat: repeat-x, repeat-y;
+       // background-position: center, 0 0;
+      //  
+      }
+    
+ 
 }

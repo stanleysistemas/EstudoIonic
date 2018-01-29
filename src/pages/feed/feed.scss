@@ -20,8 +20,10 @@ page-feed {
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
         contain: size style layout;
+        background-image: url("/assets/imgs/party.png");
+        background-size: 20%;
        // background-color: #c8c7cc;
-       background-image: linear-gradient(red, yellow);
+      // background-image: linear-gradient(red, yellow);
       // background-image: url('/src/assets/imgs/mascara.jpg');
       // background: repeat;
       }

@@ -11,9 +11,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { IntroPageModule } from '../pages/intro/intro.module';
-import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
-import { PerfilPageModule } from '../pages/perfil/perfil.module';
-import { SobrePageModule } from '../pages/sobre/sobre.module';
+//import { ConfiguracoesPageModule } from '../pages/configuracoes/configuracoes.module';
+//import { PerfilPageModule } from '../pages/perfil/perfil.module';
+//import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes.module';
 
 //import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
@@ -30,9 +30,9 @@ import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes
     FeedPageModule,
     IntroPageModule,
     HttpModule,
-    ConfiguracoesPageModule,
-    SobrePageModule,
-    PerfilPageModule,
+    //ConfiguracoesPageModule,
+   // SobrePageModule,
+   // PerfilPageModule,
     BlocosdetalhesPageModule
   ],
   bootstrap: [IonicApp],

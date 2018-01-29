@@ -13,8 +13,10 @@ page-blocosdetalhes {
         -webkit-overflow-scrolling: touch;
         will-change: scroll-position;
         contain: size style layout;
+        background-image: url("/assets/imgs/party.png");
+        background-size: 20%;
         //background-image: url("assets/imgs/mascara.jpg");
-        background-image: linear-gradient(red, yellow);
+       /// background-image: linear-gradient(red, yellow);
       }
       
 
