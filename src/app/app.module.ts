@@ -1,3 +1,4 @@
+import { SharedModule } from './shared.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -15,8 +16,6 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 //import { PerfilPageModule } from '../pages/perfil/perfil.module';
 //import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes.module';
-
-
 
 
 //import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
@@ -37,6 +36,7 @@ import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes
    // SobrePageModule,
    // PerfilPageModule,
     BlocosdetalhesPageModule,
+    SharedModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
