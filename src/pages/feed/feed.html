@@ -4,11 +4,11 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
- <ion-header>
-  <ion-toolbar color = "danger">
-  <ion-navbar>
-    <ion-title>Blocos de Carnaval</ion-title>
-  </ion-navbar>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-navbar>
+      <ion-title>Blocos de Carnaval</ion-title>
+    </ion-navbar>
   </ion-toolbar>
 </ion-header>
 <ion-content class="scroll-content" padding>
@@ -16,7 +16,6 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
   <ion-card *ngFor="let bloco of lista_blocos" (click)="abrirDetalhes(bloco)">
 
     <ion-item>
@@ -25,18 +24,18 @@
       </ion-avatar>
       <h2 class="feed_title">{{bloco.nomeEvento}}</h2>
       <p class="feed_date">{{bloco.dataInicio | date:'dd/MM/yyyy' }}</p>
+      <p>{{bloco.horaInicio | date:'mediumTime'}} às {{bloco. horaFim | date:'mediumTime'}} </p>
+      <div>{{bloco.bairro}}</div>
     </ion-item>
-    <ion-card-content>
+   <!--  <ion-card-content>
       <p>Local : {{bloco.localConcentracao}}</p>
-    </ion-card-content>
-    <ion-row>
+    </ion-card-content> -->
+   <!--  <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small>       
-          <div>Bairro: {{bloco.bairro}}</div>
-        </button>
+           <div>{{bloco.bairro}}</div>
       </ion-col>
       <ion-col>
-        <button ion-button icon-left clear small>     
+        <button ion-button icon-left clear small>
           <div>Concentração: {{bloco.horaConcentracao | date:'mediumTime'}}</div>
         </button>
       </ion-col>
@@ -45,7 +44,5 @@
           <div>Início: {{bloco.horaInicio | date:'mediumTime'}}</div>
         </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-card>
-
-</ion-content> 

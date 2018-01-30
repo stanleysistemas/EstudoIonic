@@ -16,6 +16,8 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 //import { PerfilPageModule } from '../pages/perfil/perfil.module';
 //import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes.module';
+import { Network } from "@ionic-native/network";
+
 
 
 //import { ApiFoliaProvider } from '../providers/api-folia/api-folia';
@@ -24,7 +26,8 @@ import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes
   declarations: [
     MyApp,
     HomePage,
-    TabsPage
+    TabsPage,
+   
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Network
     //ApiFoliaProvider
   ]
 })

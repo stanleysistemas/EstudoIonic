@@ -18,34 +18,17 @@
       <ion-avatar item-start>
         <img src="assets/imgs/mascara.jpg">
       </ion-avatar>
-      <h2 class="feed_title">{{bloco.nomeEvento}}</h2>
-      <p class="feed_date">{{bloco.dataInicio | date:'dd/MM/yyyy' }}</p>
+      <h2 class="feed_title">{{bloco.dataInicio | date:'dd/MM/yyyy' }}</h2>
     </ion-item>
-
-    <!-- <img src="assets/imgs/feed_image.png"> -->
-
     <ion-card-content>
+      <p>{{bloco.nomeEvento}}</p>
       <p>Local : {{bloco.localConcentracao}}</p>
+      <p>Percurso : {{bloco.percurso}}</p>
+      <p>Concentração: {{bloco.horaConcentracao | date:'mediumTime'}}</p>
     </ion-card-content>
 
     <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <!--  <ion-icon name="thumbs-up"></ion-icon> -->
-          <div>Bairro: {{bloco.bairro}}</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <!--  <ion-icon name="text"></ion-icon> -->
-          <div>Concentração: {{bloco.horaConcentracao | date:'mediumTime'}}</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <div>Início: {{bloco.horaInicio | date:'mediumTime'}}</div>
-        </button>
-      </ion-col>
+      
     </ion-row>
   </ion-card>
 </ion-content>

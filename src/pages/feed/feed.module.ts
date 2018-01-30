@@ -5,17 +5,17 @@ import { SharedModule } from '../../app/shared.module';
 
 
 
-
 @NgModule({
   declarations: [
-    FeedPage,
+    FeedPage
   ],
   imports: [
     IonicPageModule.forChild(FeedPage),
     SharedModule
   ],
   exports:[
-    FeedPage
+    FeedPage,
+    
   ]
 })
 export class FeedPageModule {}

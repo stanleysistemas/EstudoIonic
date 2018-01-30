@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { ApiFoliaProvider } from '../../providers/api-folia/api-folia';
 import { BlocosdetalhesPage } from '../blocosdetalhes/blocosdetalhes';
+import { Network } from "@ionic-native/network";
+import { AlertController } from 'ionic-angular';
+import { Subscription} from 'rxjs/Subscription';
 
+
+//declare var navigator: any;
+//declare var Connection: any;
 
 /**
  * Generated class for the FeedPage page.
@@ -20,45 +26,15 @@ import { BlocosdetalhesPage } from '../blocosdetalhes/blocosdetalhes';
   ]
 })
 export class FeedPage {
-/* 
-  items = [
-    {
-      title: 'Courgette daikon',
-      content: `Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize
-                scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo.
-                Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize
-                chicory burdock tatsoi dulse radish wakame beetroot.`,
-      icon: 'calendar',
-      time: { subtitle: '4/16/2013', title: '21:30' }
-    },
-    {
-      title: 'Courgette daikon',
-      content: `Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize
-                scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo.
-                Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize
-                chicory burdock tatsoi dulse radish wakame beetroot.`,
-      icon: 'calendar',
-      time: { subtitle: 'January', title: '29' }
-    },
-    {
-      title: 'Courgette daikon',
-      content: `Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize
-                scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo.
-                Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize
-                chicory burdock tatsoi dulse radish wakame beetroot.`,
-      icon: 'calendar',
-      time: { title: 'Short Text' }
-    }
-  ]; */
 
   
   public objeto_feed = {
-      titulo:"Stanley Alves",
-      data  :"November 5, 1955",
-      descricao:"Estou criando um app incrível...",
-      qntd_likes:12,
-      qntd_commnets:4,
-      time_comment:"12 ago"
+    titulo: "Stanley Alves",
+    data: "November 5, 1955",
+    descricao: "Estou criando um app incrível...",
+    qntd_likes: 12,
+    qntd_commnets: 4,
+    time_comment: "12 ago"
   }
 
   public lista_blocos = new Array<any>();
@@ -68,28 +44,66 @@ export class FeedPage {
 
   public refresher;
   public isRefreshing: boolean = false;
+  connected: Subscription;
+  disconnected: Subscription;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private apifoliaProvider: ApiFoliaProvider,
-    public loadingCtrl: LoadingController
-  ) {
-  }
+    public loadingCtrl: LoadingController,
+    //private platform: Platform,
+    private toast: ToastController,
+    private network: Network,
+    public alertCtrl: AlertController
+  ) {  }
+
+ 
+}
 
   /* public somaDoisNumero(num1:number, num2:number ): void{
     alert(num1 + num2);
   } */
 
+
+  /* checkNetwork() {
+    this.platform.ready().then(() => {
+      var networkState = navigator.connection.type;
+      var states = {};
+      states[Connection.UNKNOWN] = 'Unknown connection';
+      states[Connection.ETHERNET] = 'Ethernet connection';
+      states[Connection.WIFI] = 'WiFi connection';
+      states[Connection.CELL_2G] = 'Cell 2G connection';
+      states[Connection.CELL_3G] = 'Cell 3G connection';
+      states[Connection.CELL_4G] = 'Cell 4G connection';
+      states[Connection.CELL] = 'Cell generic connection';
+      states[Connection.NONE] = 'No network connection';
+
+      let alert = this.alertCtrl.create({
+        title : "Status Conexão",
+        subTitle: states[networkState],
+        buttons:["OK"]
+      
+      });
+      alert.present();
+
+    }); 
+
+   
+  }*/
+
+
+
+
   AbreCarregando() {
     this.loader = this.loadingCtrl.create({
       content: "Por favor espere...",
-     // duration: 3000
+      // duration: 3000
     });
     this.loader.present();
   }
 
-  fechaCarregando(){
+  fechaCarregando() {
     this.loader.dismiss();
   }
 
@@ -101,22 +115,51 @@ export class FeedPage {
 
   }
 
-    //setTimeout(() => {
-    //  console.log('Async operation has ended');
-    //  refresher.complete();
-    //}, 2000);
-  
+  //setTimeout(() => {
+  //  console.log('Async operation has ended');
+  //  refresher.complete();
+  //}, 2000);
+
+
 
   ionViewDidLoad() {
+  //  this.checkNetwork();
     this.carregarBlocos();
   }
 
-  abrirDetalhes(bloco){
-    console.log(bloco);
-    this.navCtrl.push(BlocosdetalhesPage, {id: bloco.id});
+  ionViewDidEnter() {
+    this.connected = this.network.onConnect().subscribe(data => {
+      console.log(data)
+      this.displayNetworkUpdate(data.type);
+    }, error => console.error(error));
+   
+    this.disconnected = this.network.onDisconnect().subscribe(data => {
+      console.log(data)
+      this.displayNetworkUpdate(data.type);
+    }, error => console.error(error));
+  }
+  
+  displayNetworkUpdate(connectionState: string){
+    let networkType = this.network.type;
+    this.toast.create({
+      message: `Agora você está ${connectionState} via ${networkType}`,
+      duration: 3000
+    }).present();
   }
 
-  carregarBlocos(){
+  ionViewWillLeave(){
+    this.connected.unsubscribe();
+    this.disconnected.unsubscribe();
+  }
+  
+  
+
+  abrirDetalhes(bloco) {
+    console.log(bloco);
+    this.navCtrl.push(BlocosdetalhesPage, { id: bloco.id });
+  }
+
+  carregarBlocos() {
     this.AbreCarregando();
     this.apifoliaProvider.getTodosBlocos().subscribe(
       data => {
@@ -124,16 +167,16 @@ export class FeedPage {
         const object_retorno = JSON.parse(response._body);
         this.lista_blocos = object_retorno;
 
-      //  console.log(this.lista_blocos);
+        //  console.log(this.lista_blocos);
 
         this.fechaCarregando();
-        if(this.isRefreshing){
+        if (this.isRefreshing) {
           this.refresher.complete();
         }
       }, error => {
         console.log(error);
         this.fechaCarregando();
-        if(this.isRefreshing){
+        if (this.isRefreshing) {
           this.refresher.complete();
           this.isRefreshing = false;
         }

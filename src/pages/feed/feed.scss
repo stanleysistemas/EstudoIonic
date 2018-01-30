@@ -1,10 +1,22 @@
 page-feed {
-    h2.feed_title {
+    h3.feed_title {
         color: red;
         font-weight: bold;
     }
     p.feed_date {
         color: green;
+    }
+
+    .ios, .md {
+ 
+        page-home {
+     
+            button {
+                align-items: baseline;
+            }
+     
+        }
+     
     }
 
     .scroll-content {
