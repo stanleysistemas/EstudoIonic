@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { FeedPage } from './feed';
-import { SharedModule } from '../../app/shared.module';
+
 
 
 
@@ -11,7 +11,7 @@ import { SharedModule } from '../../app/shared.module';
   ],
   imports: [
     IonicPageModule.forChild(FeedPage),
-    SharedModule
+  
   ],
   exports:[
     FeedPage,

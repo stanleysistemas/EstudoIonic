@@ -1,4 +1,3 @@
-import { SharedModule } from './shared.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -39,7 +38,6 @@ import { Network } from "@ionic-native/network";
    // SobrePageModule,
    // PerfilPageModule,
     BlocosdetalhesPageModule,
-    SharedModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

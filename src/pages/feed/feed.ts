@@ -59,7 +59,7 @@ export class FeedPage {
   ) {  }
 
  
-}
+
 
   /* public somaDoisNumero(num1:number, num2:number ): void{
     alert(num1 + num2);
@@ -120,24 +120,28 @@ export class FeedPage {
   //  refresher.complete();
   //}, 2000);
 
-
-
-  ionViewDidLoad() {
-  //  this.checkNetwork();
-    this.carregarBlocos();
-  }
-
-  ionViewDidEnter() {
-    this.connected = this.network.onConnect().subscribe(data => {
+  checkNetwork() {
+    this.network.onConnect().subscribe(data => {
       console.log(data)
       this.displayNetworkUpdate(data.type);
     }, error => console.error(error));
    
-    this.disconnected = this.network.onDisconnect().subscribe(data => {
+    this.network.onDisconnect().subscribe(data => {
       console.log(data)
       this.displayNetworkUpdate(data.type);
     }, error => console.error(error));
   }
+
+  ionViewDidLoad() {
+    this.checkNetwork();
+    this.carregarBlocos();
+  }
+
+  ionViewDidEnter() {
+    this.checkNetwork();
+  }
+
+  
   
   displayNetworkUpdate(connectionState: string){
     let networkType = this.network.type;
@@ -147,10 +151,10 @@ export class FeedPage {
     }).present();
   }
 
-  ionViewWillLeave(){
-    this.connected.unsubscribe();
-    this.disconnected.unsubscribe();
-  }
+  //ionViewWillLeave(){
+  //  this.connected.unsubscribe();
+  //  this.disconnected.unsubscribe();
+  //}
   
   
 
