@@ -11,13 +11,14 @@
     </ion-navbar>
   </ion-toolbar>
 </ion-header>
-<ion-content class="scroll-content" padding>
 
+<ion-content class="scroll-content" padding>
+ 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let bloco of lista_blocos" (click)="abrirDetalhes(bloco)">
 
+  <ion-card *ngFor="let bloco of lista_blocos" (click)="abrirDetalhes(bloco)">
     <ion-item>
       <ion-avatar item-start>
         <img src="assets/imgs/mascara.jpg">

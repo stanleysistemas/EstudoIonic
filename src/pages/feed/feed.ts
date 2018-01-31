@@ -56,7 +56,15 @@ export class FeedPage {
     private toast: ToastController,
     private network: Network,
     public alertCtrl: AlertController
-  ) {  }
+  ) {  
+    this.checkNetwork();
+    
+    var date = new Date();
+    var tzoffset = date.getTimezoneOffset() * 60000; //offset in milliseconds
+    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+    // => '2015-01-26T06:40:36.181'
+    //localISOTime;
+  }
 
  
 
@@ -133,7 +141,7 @@ export class FeedPage {
   }
 
   ionViewDidLoad() {
-    this.checkNetwork();
+    
     this.carregarBlocos();
   }
 
@@ -159,7 +167,7 @@ export class FeedPage {
   
 
   abrirDetalhes(bloco) {
-    console.log(bloco);
+   // console.log(bloco);
     this.navCtrl.push(BlocosdetalhesPage, { id: bloco.id });
   }
 
