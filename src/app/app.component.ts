@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-//import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 import { ConfigProvider } from '../providers/config/config';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -33,11 +31,11 @@ export class MyApp {
 
       if(config == null){
         this.rootPage = IntroPage;
-       configProvider.setConfigData(false);
+        configProvider.setConfigData(false);
       }else{
         this.rootPage = TabsPage;
       }
-    //  console.log(config);
+      console.log(config);
 
       statusBar.styleDefault();
       splashScreen.hide();

@@ -57,11 +57,18 @@ export class FeedPage {
     private network: Network,
     public alertCtrl: AlertController
   ) {  
-    this.checkNetwork();
     
-    var date = new Date();
-    var tzoffset = date.getTimezoneOffset() * 60000; //offset in milliseconds
-    var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+    this.network.onDisconnect().subscribe(() => {
+      this.toast.create({
+        message: 'Acho que você não está conectado à internet. Verifique sua conexão e tente novamente.',
+        showCloseButton: true,
+        closeButtonText: 'Ok'
+      }).present();
+    })
+    
+   // var date = new Date();
+    //var tzoffset = date.getTimezoneOffset() * 60000; //offset in milliseconds
+    //var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
     // => '2015-01-26T06:40:36.181'
     //localISOTime;
   }
@@ -128,7 +135,7 @@ export class FeedPage {
   //  refresher.complete();
   //}, 2000);
 
-  checkNetwork() {
+  /* checkNetwork() {
     this.network.onConnect().subscribe(data => {
       console.log(data)
       this.displayNetworkUpdate(data.type);
@@ -138,7 +145,7 @@ export class FeedPage {
       console.log(data)
       this.displayNetworkUpdate(data.type);
     }, error => console.error(error));
-  }
+  } */
 
   ionViewDidLoad() {
     
@@ -146,18 +153,18 @@ export class FeedPage {
   }
 
   ionViewDidEnter() {
-    this.checkNetwork();
+   // this.checkNetwork();
   }
 
   
   
-  displayNetworkUpdate(connectionState: string){
-    let networkType = this.network.type;
-    this.toast.create({
-      message: `Agora você está ${connectionState} via ${networkType}`,
-      duration: 3000
-    }).present();
-  }
+ // displayNetworkUpdate(connectionState: string){
+  //  let networkType = this.network.type;
+  //  this.toast.create({
+  //    message: `Agora você está ${connectionState} via ${networkType}`,
+  //    duration: 3000
+  //  }).present();
+ // }
 
   //ionViewWillLeave(){
   //  this.connected.unsubscribe();
