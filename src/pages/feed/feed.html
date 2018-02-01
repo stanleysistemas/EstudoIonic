@@ -13,12 +13,15 @@
 </ion-header>
 
 <ion-content class="scroll-content" padding>
- 
+  <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+  
+  <ion-searchbar #searchbar placeholder="o que deseja?" [hidden]="!search" (ionInput)="searchAction($event)" [(ngModel)]="queryText">
+  </ion-searchbar>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let bloco of lista_blocos" (click)="abrirDetalhes(bloco)">
+  <ion-card *ngFor="let bloco of blocos" (click)="abrirDetalhes(bloco)">
     <ion-item>
       <ion-avatar item-start>
         <img src="assets/imgs/mascara.jpg">
@@ -28,10 +31,10 @@
       <p>{{bloco.horaInicio | date:'mediumTime'}} às {{bloco. horaFim | date:'mediumTime'}} </p>
       <div>{{bloco.bairro}}</div>
     </ion-item>
-   <!--  <ion-card-content>
+    <!--  <ion-card-content>
       <p>Local : {{bloco.localConcentracao}}</p>
     </ion-card-content> -->
-   <!--  <ion-row>
+    <!--  <ion-row>
       <ion-col>
            <div>{{bloco.bairro}}</div>
       </ion-col>
@@ -47,3 +50,9 @@
       </ion-col>
     </ion-row> -->
   </ion-card>
+  <ion-fab right bottom (click)="toggleSearch()">
+    <button ion-fab class="pop-in">
+      <ion-icon name="search"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

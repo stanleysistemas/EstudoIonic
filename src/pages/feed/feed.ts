@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, Searchbar } from 'ionic-angular';
 import { ApiFoliaProvider } from '../../providers/api-folia/api-folia';
 import { BlocosdetalhesPage } from '../blocosdetalhes/blocosdetalhes';
 import { Network } from "@ionic-native/network";
-import { AlertController } from 'ionic-angular';
-import { Subscription} from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 
 //declare var navigator: any;
@@ -27,15 +26,22 @@ import { Subscription} from 'rxjs/Subscription';
 })
 export class FeedPage {
 
-  
-  public objeto_feed = {
+  @ViewChild('searchbar', { read: ElementRef }) searchbarRef: ElementRef;
+  @ViewChild('searchbar') searchbarElement: Searchbar;
+  search: boolean = false;
+  queryText: string;
+  blocos: any;
+
+
+  /* public objeto_feed = {
     titulo: "Stanley Alves",
     data: "November 5, 1955",
     descricao: "Estou criando um app incrível...",
     qntd_likes: 12,
     qntd_commnets: 4,
     time_comment: "12 ago"
-  }
+  } */
+
 
   public lista_blocos = new Array<any>();
   //public page = 1;
@@ -54,10 +60,9 @@ export class FeedPage {
     public loadingCtrl: LoadingController,
     //private platform: Platform,
     private toast: ToastController,
-    private network: Network,
-    public alertCtrl: AlertController
-  ) {  
-    
+    private network: Network
+  ) {
+
     this.network.onDisconnect().subscribe(() => {
       this.toast.create({
         message: 'Acho que você não está conectado à internet. Verifique sua conexão e tente novamente.',
@@ -65,16 +70,34 @@ export class FeedPage {
         closeButtonText: 'Ok'
       }).present();
     })
-    
-   // var date = new Date();
+
+    this.initializeItems();
+
+    // var date = new Date();
     //var tzoffset = date.getTimezoneOffset() * 60000; //offset in milliseconds
     //var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
     // => '2015-01-26T06:40:36.181'
     //localISOTime;
   }
 
- 
-
+  initializeItems() {
+    this.blocos = this.lista_blocos;
+    
+  }
+  searchAction(ev: any) {
+      // Reset items back to all of the items
+      this.initializeItems();
+  
+      // set val to the value of the searchbar
+      let val = ev.target.value;
+  
+      // if the value is an empty string don't filter the items
+      if (val && val.trim() != '') {
+        this.blocos = this.blocos.filter((item) => {
+          return (item.nomeEvento.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+    }
 
   /* public somaDoisNumero(num1:number, num2:number ): void{
     alert(num1 + num2);
@@ -107,8 +130,14 @@ export class FeedPage {
    
   }*/
 
-
-
+  toggleSearch() {
+    if (this.search) {
+      this.search = false;
+    } else {
+      this.search = true;
+      this.searchbarElement.setFocus();
+    }
+  }
 
   AbreCarregando() {
     this.loader = this.loadingCtrl.create({
@@ -148,35 +177,47 @@ export class FeedPage {
   } */
 
   ionViewDidLoad() {
-    
+
     this.carregarBlocos();
   }
 
   ionViewDidEnter() {
-   // this.checkNetwork();
+    // this.checkNetwork();
   }
 
-  
-  
- // displayNetworkUpdate(connectionState: string){
+
+
+  // displayNetworkUpdate(connectionState: string){
   //  let networkType = this.network.type;
   //  this.toast.create({
   //    message: `Agora você está ${connectionState} via ${networkType}`,
   //    duration: 3000
   //  }).present();
- // }
+  // }
 
   //ionViewWillLeave(){
   //  this.connected.unsubscribe();
   //  this.disconnected.unsubscribe();
   //}
-  
-  
+
+
 
   abrirDetalhes(bloco) {
-   // console.log(bloco);
+    // console.log(bloco);
     this.navCtrl.push(BlocosdetalhesPage, { id: bloco.id });
   }
+
+ /*  searchAction(texto: any) {
+    this.initializeItems();
+    let val = texto.target.value;
+    //implement search
+    if (val.trim() == '') {
+      return;
+    }
+    this.blocos = this.blocos.filter((item) => {
+      return (item.nomeEvento.toLowerCase().indexOf(val.toLowerCase() > -1));
+    })
+  } */
 
   carregarBlocos() {
     this.AbreCarregando();
@@ -185,7 +226,7 @@ export class FeedPage {
         const response = (data as any);
         const object_retorno = JSON.parse(response._body);
         this.lista_blocos = object_retorno;
-
+        this.blocos = this.lista_blocos;
         //  console.log(this.lista_blocos);
 
         this.fechaCarregando();

@@ -16,6 +16,7 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 //import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { BlocosdetalhesPageModule } from '../pages/blocosdetalhes/blocosdetalhes.module';
 import { Network } from "@ionic-native/network";
+import { FeedPage } from '../pages/feed/feed';
 
 
 
@@ -25,13 +26,14 @@ import { Network } from "@ionic-native/network";
   declarations: [
     MyApp,
     HomePage,
+    FeedPage,
     TabsPage,
    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    FeedPageModule,
+   // FeedPageModule,
     IntroPageModule,
     HttpModule,
     //ConfiguracoesPageModule,
@@ -43,13 +45,14 @@ import { Network } from "@ionic-native/network";
   entryComponents: [
     MyApp,
     HomePage,
+    FeedPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Network
+    Network,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
     //ApiFoliaProvider
   ]
 })
