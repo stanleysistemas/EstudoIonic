@@ -141,7 +141,7 @@ export class FeedPage {
 
   AbreCarregando() {
     this.loader = this.loadingCtrl.create({
-      content: "Por favor espere...",
+      content: "Por favor aguarde...",
       // duration: 3000
     });
     this.loader.present();
